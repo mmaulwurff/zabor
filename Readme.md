@@ -24,3 +24,7 @@ When VM abort happens, Zabor prints:
 - event handler list;
 - a request for the user to report the VM abort;
 - instructions for taking a screenshot.
+
+## Acknowledgments
+
+- Thanks to KeksDose for the concept of VM abort handler.
