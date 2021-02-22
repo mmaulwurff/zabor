@@ -27,6 +27,10 @@ When VM abort happens, Zabor prints:
 - a request for the user to report the VM abort;
 - instructions for taking a screenshot.
 
+If there are several Zabor-based handlers loaded, only the first one will print
+stuff. For this to work, all handlers must have "VmAbortHandler" somewhere in
+their class name.
+
 ## Acknowledgments
 
 - Thanks to KeksDose for the concept of VM abort handler.
