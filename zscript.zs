@@ -19,6 +19,14 @@ version 4.5
 
 class zn_VmAbortHandler : EventHandler
 {
+
+  override
+  void worldLoaded(WorldEvent event)
+  {
+    mPlayerClassName = players[consolePlayer].mo.getClassName();
+    mSkillName = g_SkillName();
+  }
+
   override
   void onDestroy()
   {
@@ -26,19 +34,40 @@ class zn_VmAbortHandler : EventHandler
 
     printZabor();
     printGameInfo();
+    printConfiguration();
     printEventHandlers();
     printAttention();
     printScreenshotInstructions();
   }
 
-  override
-  void worldTick()
+// private: ////////////////////////////////////////////////////////////////////////////////////////
+
+  private static
+  string getCvarIntValueAsString(string cvarName)
   {
-    int zero = 0;
-    1 / zero;
+    let aCvar = Cvar.getCvar(cvarName, players[consolePlayer]);
+    return aCvar ? string.format("%s: %d", cvarName, aCvar.getInt()) : "";
   }
 
-// private: ////////////////////////////////////////////////////////////////////////////////////////
+  private static
+  string getCvarFloatValueAsString(string cvarName)
+  {
+    let aCvar = Cvar.getCvar(cvarName, players[consolePlayer]);
+    return aCvar ? string.format("%s: %f", cvarName, aCvar.getInt()) : "";
+  }
+
+  private static
+  void printConfiguration()
+  {
+    Array<string> configuration;
+    configuration.push(getCvarIntValueAsString("compatflags"));
+    configuration.push(getCvarIntValueAsString("compatflags2"));
+    configuration.push(getCvarIntValueAsString("dmflags"));
+    configuration.push(getCvarIntValueAsString("dmflags2"));
+    configuration.push(getCvarFloatValueAsString("autoaim"));
+
+    Console.printf("%s", join(configuration, ", "));
+  }
 
   private
   void printAttention()
@@ -52,7 +81,7 @@ class zn_VmAbortHandler : EventHandler
     {
       stars = stars .. "*";
     }
-    console.printf("\cg%s\n%s\n%s", stars, message, stars);
+    Console.printf("\cg%s\n%s\n%s", stars, message, stars);
   }
 
   private static
@@ -88,17 +117,18 @@ class zn_VmAbortHandler : EventHandler
   private static
   void printScreenshotInstructions()
   {
-    Console.printf("Type \"screenshot\" below to take a screenshot. Type \"screenshot_dir\" to know where screenshots are saved.");
+    Console.printf("Type \"screenshot\" below to take a screenshot.");
   }
 
-  private static
+  private
   void printGameInfo()
   {
-    Console.printf( "Game: level: %s, time: %d, multiplayer: %d, player class number: %d"
+    Console.printf( "Game: level: %s, time: %d, multiplayer: %d, player class: %s, skill: %s"
                   , level.mapName
                   , level.totalTime
                   , multiplayer
-                  , players[consolePlayer].getPlayerClassNum()
+                  , mPlayerClassName
+                  , mSkillName
                   );
   }
 
@@ -136,7 +166,7 @@ class zn_VmAbortHandler : EventHandler
       {
         result = strings[i];
       }
-      else
+      else if (strings[i].length() > 0)
       {
         result.appendFormat("%s%s", delimiter, strings[i]);
       }
@@ -144,5 +174,8 @@ class zn_VmAbortHandler : EventHandler
 
     return result;
   }
+
+  private string mPlayerClassName;
+  private string mSkillName;
 
 }
