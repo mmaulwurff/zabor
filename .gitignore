@@ -1,0 +1,20 @@
+# Ignore everything, but not directories:
+
+*
+!**/
+
+# Except the following file types:
+
+!.gitignore
+!.gitattributes
+
+!**.txt
+!**.md
+!**.zs
+!**.sh
+!**.png
+!**.ogg
+
+# But do ignore this:
+
+changelog.txt
