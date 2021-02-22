@@ -13,6 +13,8 @@
 Zabor is VM abort handler for GZDoom. It is both a script library and a
 standalone add-on.
 
+![screenshot](screenshots/screenshot1.png)
+
 This mod is a part of [m8f's toolbox](https://mmaulwurff.github.io/pages/toolbox).
 
 ## Features
