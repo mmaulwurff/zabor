@@ -28,6 +28,12 @@ class zr_VmAbortHandler : EventHandler
   }
 
   override
+  void UiTick()
+  {
+    if (level.totalTime % 35 == 0) rememberSystemTime(SystemTime.now());
+  }
+
+  override
   void onDestroy()
   {
     if (gameState != GS_FullConsole || !amIFirst()) return;
@@ -36,6 +42,7 @@ class zr_VmAbortHandler : EventHandler
     printGameInfo();
     printConfiguration();
     printEventHandlers();
+    printRealTime();
     printAttention();
   }
 
@@ -162,6 +169,12 @@ class zr_VmAbortHandler : EventHandler
     Console.printf("Event handlers: %s", join(eventHandlers, ", "));
   }
 
+  private
+  void printRealTime()
+  {
+    Console.printf("System time: %s", SystemTime.format("%F %T %Z", mSystemTime));
+  }
+
   private static
   string join(Array<string> strings, string delimiter)
   {
@@ -185,7 +198,14 @@ class zr_VmAbortHandler : EventHandler
     return result;
   }
 
+  private play
+  void rememberSystemTime(int value) const
+  {
+    mSystemTime = value;
+  }
+
   private string mPlayerClassName;
   private string mSkillName;
+  private int mSystemTime;
 
 }
