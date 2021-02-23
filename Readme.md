@@ -23,8 +23,8 @@ When VM abort happens, Zabor prints:
   class, skill;
 - game configuration: compat flags, dm flags, autoaim;
 - event handler list;
-- a request for the user to report the VM abort;
-- instructions for taking a screenshot.
+- system time;
+- a request for the user to report the VM abort.
 
 If there are several Zabor-based handlers loaded, only the first one will print
 stuff. For this to work, all handlers must have "VmAbortHandler" somewhere in
