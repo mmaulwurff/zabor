@@ -1,6 +1,6 @@
 gameinfo
 {
 
-  AddEventHandlers = "zn_VmAbortHandler"
+  AddEventHandlers = "zr_VmAbortHandler"
 
 } // gameinfo

@@ -17,7 +17,7 @@
 
 version 4.5
 
-class zn_VmAbortHandler : EventHandler
+class zr_VmAbortHandler : EventHandler
 {
 
   override
