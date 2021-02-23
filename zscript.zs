@@ -37,7 +37,6 @@ class zr_VmAbortHandler : EventHandler
     printConfiguration();
     printEventHandlers();
     printAttention();
-    printScreenshotInstructions();
   }
 
 // private: ////////////////////////////////////////////////////////////////////////////////////////
@@ -72,16 +71,32 @@ class zr_VmAbortHandler : EventHandler
   private
   void printAttention()
   {
-    string message = string.format( "* %s, please report this VM abort to mod author. *"
-                                  , players[consolePlayer].getUserName()
-                                  );
-    int length = message.length();
-    string stars;
+    string message1 = string.format( "  # %s, please report this VM abort to mod author."
+                                   , players[consolePlayer].getUserName()
+                                   );
+    string message2 = "  # Attach screenshot to the report.";
+    string message3 = "  # Type \"screenshot\" below to take a screenshot.";
+
+    int length = max(max(message1.length(), message2.length()), message3.length());
+
+    message1 = fillBox(message1, length);
+    message2 = fillBox(message2, length);
+    message3 = fillBox(message3, length);
+
+    string hashes;
     for (int i = 0; i < length; ++i)
     {
-      stars = stars .. "*";
+      hashes = hashes .. "#";
     }
-    Console.printf("\cg%s\n%s\n%s", stars, message, stars);
+    Console.printf("\n\cg  %s\n%s\n%s\n%s\n  %s\n", hashes, message1, message2, message3, hashes);
+  }
+
+  private static
+  string fillBox(string result, int length)
+  {
+    for (int i = result.length(); i < length; ++i) result.appendFormat(" ");
+    result.appendFormat(" #");
+    return result;
   }
 
   private static
@@ -90,10 +105,9 @@ class zr_VmAbortHandler : EventHandler
     Console.printf("\ci"
       " __  __  __  __  __\n"
       "/  \\/  \\/  \\/  \\/  \\\n"
-      "|  ||  ||  ||  ||  |\n"
+      "|Za||bo||r ||v0||.1|\n"
       "|..||..||..||..||..|\n"
       "|..||..||..||..||..|\n"
-      "| Z|| a|| b|| o|| r|\n"
       "|__||__||__||__||__|\n"
     );
   }
@@ -112,12 +126,6 @@ class zr_VmAbortHandler : EventHandler
       return aClass.getClassName() == getClassName();
     }
     return false;
-  }
-
-  private static
-  void printScreenshotInstructions()
-  {
-    Console.printf("Type \"screenshot\" below to take a screenshot.");
   }
 
   private
