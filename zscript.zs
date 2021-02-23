@@ -162,11 +162,13 @@ class zr_VmAbortHandler : EventHandler
     uint nStrings = strings.size();
     for (uint i = 0; i < nStrings; ++i)
     {
+      if (strings[i].length() == 0) continue;
+
       if (result.length() == 0)
       {
         result = strings[i];
       }
-      else if (strings[i].length() > 0)
+      else
       {
         result.appendFormat("%s%s", delimiter, strings[i]);
       }
