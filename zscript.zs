@@ -28,7 +28,7 @@ class zr_VmAbortHandler : EventHandler
   }
 
   override
-  void UiTick()
+  void uiTick()
   {
     if (level.totalTime % 35 == 0) rememberSystemTime(SystemTime.now());
   }
@@ -59,18 +59,27 @@ class zr_VmAbortHandler : EventHandler
   string getCvarFloatValueAsString(string cvarName)
   {
     let aCvar = Cvar.getCvar(cvarName, players[consolePlayer]);
-    return aCvar ? string.format("%s: %f", cvarName, aCvar.getInt()) : "";
+    return aCvar ? string.format("%s: %f", cvarName, aCvar.getFloat()) : "";
+  }
+
+  private static
+  string getCvarColorValueAsString(string cvarName)
+  {
+    let aCvar = Cvar.getCvar(cvarName, players[consolePlayer]);
+    return aCvar ? string.format("%s: 0x%x", cvarName, aCvar.getInt()) : "";
   }
 
   private static
   void printConfiguration()
   {
-    Array<string> configuration;
-    configuration.push(getCvarIntValueAsString("compatflags"));
-    configuration.push(getCvarIntValueAsString("compatflags2"));
-    configuration.push(getCvarIntValueAsString("dmflags"));
-    configuration.push(getCvarIntValueAsString("dmflags2"));
-    configuration.push(getCvarFloatValueAsString("autoaim"));
+    Array<string> configuration =
+      {
+        getCvarIntValueAsString("compatflags"),
+        getCvarIntValueAsString("compatflags2"),
+        getCvarIntValueAsString("dmflags"),
+        getCvarIntValueAsString("dmflags2"),
+        getCvarFloatValueAsString("autoaim")
+      };
 
     Console.printf("%s", join(configuration, ", "));
   }
