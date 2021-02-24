@@ -46,30 +46,42 @@ class zr_VmAbortHandler : EventHandler
     printAttention();
   }
 
+  override
+  void consoleProcess(ConsoleEvent event)
+  {
+    if (!amIFirst() || event.name != "zabor") return;
+
+    printZabor();
+    printGameInfo();
+    printConfiguration();
+    printEventHandlers();
+    printRealTime();
+  }
+
 // private: ////////////////////////////////////////////////////////////////////////////////////////
 
-  private static
+  private static clearscope
   string getCvarIntValueAsString(string cvarName)
   {
     let aCvar = Cvar.getCvar(cvarName, players[consolePlayer]);
     return aCvar ? string.format("%s: %d", cvarName, aCvar.getInt()) : "";
   }
 
-  private static
+  private static clearscope
   string getCvarFloatValueAsString(string cvarName)
   {
     let aCvar = Cvar.getCvar(cvarName, players[consolePlayer]);
     return aCvar ? string.format("%s: %f", cvarName, aCvar.getFloat()) : "";
   }
 
-  private static
+  private static clearscope
   string getCvarColorValueAsString(string cvarName)
   {
     let aCvar = Cvar.getCvar(cvarName, players[consolePlayer]);
     return aCvar ? string.format("%s: 0x%x", cvarName, aCvar.getInt()) : "";
   }
 
-  private static
+  private static clearscope
   void printConfiguration()
   {
     Array<string> configuration =
@@ -84,7 +96,7 @@ class zr_VmAbortHandler : EventHandler
     Console.printf("%s", join(configuration, ", "));
   }
 
-  private
+  private clearscope
   void printAttention()
   {
     string message1 = string.format( "  # %s, please report this VM abort to mod author."
@@ -107,7 +119,7 @@ class zr_VmAbortHandler : EventHandler
     Console.printf("\n\cg  %s\n%s\n%s\n%s\n  %s\n", hashes, message1, message2, message3, hashes);
   }
 
-  private static
+  private static clearscope
   string fillBox(string result, int length)
   {
     for (int i = result.length(); i < length; ++i) result.appendFormat(" ");
@@ -115,7 +127,7 @@ class zr_VmAbortHandler : EventHandler
     return result;
   }
 
-  private static
+  private static clearscope
   void printZabor()
   {
     Console.printf("\ci"
@@ -128,7 +140,7 @@ class zr_VmAbortHandler : EventHandler
     );
   }
 
-  private
+  private clearscope
   bool amIFirst()
   {
     uint nClasses = AllClasses.size();
@@ -144,7 +156,7 @@ class zr_VmAbortHandler : EventHandler
     return false;
   }
 
-  private
+  private clearscope
   void printGameInfo()
   {
     Console.printf( "Game: level: %s, time: %d, multiplayer: %d, player class: %s, skill: %s"
@@ -156,7 +168,7 @@ class zr_VmAbortHandler : EventHandler
                   );
   }
 
-  private static
+  private static clearscope
   void printEventHandlers()
   {
     Array<string> eventHandlers;
@@ -178,13 +190,13 @@ class zr_VmAbortHandler : EventHandler
     Console.printf("Event handlers: %s", join(eventHandlers, ", "));
   }
 
-  private
+  private clearscope
   void printRealTime()
   {
     Console.printf("System time: %s", SystemTime.format("%F %T %Z", mSystemTime));
   }
 
-  private static
+  private static clearscope
   string join(Array<string> strings, string delimiter)
   {
     string result;

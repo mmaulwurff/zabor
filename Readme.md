@@ -30,6 +30,8 @@ If there are several Zabor-based handlers loaded, only the first one will print
 stuff. For this to work, all handlers must have "VmAbortHandler" somewhere in
 their class name.
 
+Also there is `zabor` console command for gathering a report by manual request.
+
 ## How to use
 
 ### As a standalone add-on
@@ -39,16 +41,21 @@ it works with the following command: `error welp`.
 
 ### As a script library
 
-1. Copy zr_VmAbortHandler class from zscript.zs to your mod.
-2. Change `zr_` to something unique. Please make sure that `VmAbortHandler` part
+- Copy zr_VmAbortHandler class from zscript.zs to your mod.
+- Change `zr_` to something unique. Please make sure that `VmAbortHandler` part
    of the name remains intact.
-3. Add this event handler to `gameinfo` section in `mapinfo` lump like this:
+- Add this event handler to `gameinfo` section in `mapinfo` lump like this:
+
 ```
 gameinfo
 {
   AddEventHandlers = "my_VmAbortHandler"
 }
 ```
+
+- Copy `zabor` alias from `keyconf.txt` if you want `zabor` console command to
+  be available.
+
 
 ## Acknowledgments
 

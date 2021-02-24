@@ -1,0 +1,1 @@
+Alias zabor "event zabor"
