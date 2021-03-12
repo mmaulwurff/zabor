@@ -60,3 +60,4 @@ gameinfo
 ## Acknowledgments
 
 - Thanks to KeksDose for the concept of VM abort handler.
+- Thanks to Colerx for bug reports.

@@ -21,10 +21,12 @@ class zr_VmAbortHandler : EventHandler
 {
 
   override
-  void worldLoaded(WorldEvent event)
+  void playerSpawned(PlayerEvent event)
   {
+    if (event.playerNumber != consolePlayer) return;
+
     mPlayerClassName = players[consolePlayer].mo.getClassName();
-    mSkillName = g_SkillName();
+    mSkillName       = g_SkillName();
   }
 
   override
