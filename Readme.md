@@ -14,7 +14,7 @@ standalone add-on.
 
 ![screenshot](screenshots/screenshot1.png)
 
-This mod is a part of [m8f's toolbox](https://mmaulwurff.github.io/pages/toolbox).
+This add-on is a part of [m8f's doctor's bag](https://mmaulwurff.github.io/pages/doctors-bag).
 
 ## Features
 
