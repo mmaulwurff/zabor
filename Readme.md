@@ -3,7 +3,7 @@
 ```
  __  __  __  __  __  __
 /  \/  \/  \/  \/  \/  \
-|Za||bo||r ||v1||.0||.1|
+|Za||bo||r ||v1||.1||.0|
 |..||..||..||..||..||..|
 |..||..||..||..||..||..|
 |__||__||__||__||__||__|
@@ -24,7 +24,8 @@ When VM abort happens, Zabor prints:
 - game configuration: compat flags, dm flags, autoaim;
 - event handler list;
 - system time;
-- a request for the user to report the VM abort.
+- a request for the user to report the VM abort;
+- `zr_enabled` cvar to disable Zabor.
 
 If there are several Zabor-based handlers loaded, only the first one will print
 stuff. For this to work, all handlers must have "VmAbortHandler" somewhere in
@@ -55,9 +56,11 @@ gameinfo
 
 - Copy `zabor` alias from `keyconf.txt` if you want `zabor` console command to
   be available.
+- Copy `zr_zabor` cvar from `cvarinfo.txt` and change its prefix.
 
 
 ## Acknowledgments
 
 - Thanks to KeksDose for the concept of VM abort handler.
 - Thanks to Colerx for bug reports.
+- Thanks to Accensus for feature suggestions.

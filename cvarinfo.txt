@@ -1,0 +1,1 @@
+user bool zr_enabled = true;

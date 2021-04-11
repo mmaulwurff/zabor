@@ -38,7 +38,12 @@ class zr_VmAbortHandler : EventHandler
   override
   void onDestroy()
   {
-    if (gameState != GS_FullConsole || !amIFirst()) return;
+    if (gameState != GS_FullConsole
+        || !amIFirst()
+        || !Cvar.getCvar("zr_enabled", players[consolePlayer]).getBool())
+    {
+      return;
+    }
 
     printZabor();
     printGameInfo();
@@ -139,7 +144,7 @@ class zr_VmAbortHandler : EventHandler
     Console.printf("\ci"
       " __  __  __  __  __  __\n"
       "/  \\/  \\/  \\/  \\/  \\/  \\\n"
-      "|Za||bo||r ||v1||.0||.1|\n"
+      "|Za||bo||r ||v1||.1||.0|\n"
       "|..||..||..||..||..||..|\n"
       "|..||..||..||..||..||..|\n"
       "|__||__||__||__||__||__|\n"
