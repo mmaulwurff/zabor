@@ -1,3 +1,5 @@
+Archived: moved to DoomDoctor in https://github.com/mmaulwurff/doom-toolbox
+
 # Zabor
 
 ```
